@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Casa Crédito | Crédito hipotecario digital en Colombia</title>
+  <meta name="description" content="Crédito hipotecario en Colombia con proceso 100% digital. Primera vivienda, refinanciación e inversión inmobiliaria. Evaluación gratuita, pre-aprobación en 24-48 horas." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Mi Casa Crédito — Tu casa propia, sin la vuelta del banco" />
+  <meta property="og:description" content="Crédito hipotecario digital en Colombia. Evaluación gratuita, pre-aprobación en 24-48 horas." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <header id="navbar" role="banner">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Mi Casa Crédito inicio">Mi Casa <span>Crédito</span></a>
+      <nav aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#calculadora">Calculadora</a></li>
+          <li><a href="#precalificacion">Precalificación</a></li>
+          <li><a href="#ventajas">Nosotros</a></li>
+          <li><a href="#faq">Preguntas</a></li>
+        </ul>
+      </nav>
+      <a href="#precalificacion" class="btn btn-primary nav-cta">Evalúate gratis</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section id="hero" aria-labelledby="hero-heading">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <p class="hero-eyebrow">Crédito hipotecario en Colombia</p>
+          <h1 id="hero-heading">Tu casa propia, sin la vuelta del banco</h1>
+          <p class="hero-desc">Con más de 13 años en el sector inmobiliario, te acompañamos desde la evaluación hasta la llave en mano. Sin filas, sin papel, sin intermediarios.</p>
+          <div class="hero-buttons">
+            <a href="#precalificacion" class="btn btn-accent">Ver si califico</a>
+            <a href="#calculadora" class="btn btn-outline-white">Calcular mi cuota</a>
+          </div>
+        </div>
+        <div class="hero-card" role="complementary" aria-label="Estadísticas">
+          <h3>13 años abriendo puertas</h3>
+          <div class="hero-stats">
+            <div class="stat"><strong data-counter="2800" data-prefix="+" data-suffix="">+2.800</strong><span>familias con crédito aprobado</span></div>
+            <div class="stat"><strong>48 h</strong><span>para la pre-aprobación</span></div>
+            <div class="stat"><strong>Desde 11% EA</strong><span>tasa efectiva anual</span></div>
+            <div class="stat"><strong data-counter="30" data-prefix="" data-suffix=" días">30 días</strong><span>proceso completo</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios" aria-labelledby="servicios-heading">
+      <div class="container">
+        <span class="section-label">Lo que hacemos</span>
+        <h2 class="section-title" id="servicios-heading">Tres productos, un solo objetivo</h2>
+        <p class="section-sub">Sea cual sea tu momento, tenemos una solución que se ajusta.</p>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">🏠</div>
+            <h3>Primera vivienda</h3>
+            <p>Cuota inicial desde el 10%. Financiamos VIS y No VIS con plazos hasta 30 años. Un asesor te explica cada paso antes de que firmes.</p>
+            <span class="service-tag">Desde 11% EA</span>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">🔄</div>
+            <h3>Refinanciación</h3>
+            <p>¿Tu hipoteca actual te está pesando? Revisamos si podemos mejorar la tasa, bajar la cuota o sacar liquidez sobre lo que ya pagaste.</p>
+            <span class="service-tag">Cuota hasta 30% menor</span>
+          </article>
+          <article class="service-card">
+            <div class="service-icon" aria-hidden="true">📈</div>
+            <h3>Inversión en finca raíz</h3>
+            <p>Financia el apartamento o local que vas a arrendar. Evaluamos el flujo de caja del inmueble y te decimos si el negocio cuadra.</p>
+            <span class="service-tag">Hasta 75% del valor</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculadora" aria-labelledby="calculadora-heading">
+      <div class="container">
+        <span class="section-label">Herramienta</span>
+        <h2 class="section-title" id="calculadora-heading">Haz tus números antes de decidir</h2>
+        <p class="section-sub">Son estimaciones orientativas. Con tu perfil real, un asesor ajusta los cálculos exactos.</p>
+        <div class="calculator-layout">
+          <div class="calc-card">
+            <div class="calc-tabs" role="tablist" aria-label="Tipo de calculadora">
+              <button class="calc-tab active" data-target="form-mortgage" role="tab" aria-selected="true">Cuota hipoteca</button>
+              <button class="calc-tab" data-target="form-roi" role="tab" aria-selected="false">ROI arriendo</button>
+            </div>
+
+            <div class="calc-form active" id="form-mortgage" role="tabpanel">
+              <div class="field" style="margin-bottom:16px;">
+                <label for="m-principal">Monto del crédito (USD)</label>
+                <input id="m-principal" type="number" placeholder="300000" min="1" />
+              </div>
+              <div class="field" style="margin-bottom:16px;">
+                <label for="m-rate">Tasa anual (%)</label>
+                <input id="m-rate" type="number" placeholder="6.5" step="0.1" min="0.1" />
+              </div>
+              <div class="field" style="margin-bottom:20px;">
+                <label for="m-years">Plazo (años)</label>
+                <input id="m-years" type="number" placeholder="20" min="1" max="30" />
+              </div>
+              <button class="btn btn-primary" id="calc-mortgage-btn" type="button" style="width:100%;">Calcular cuota mensual</button>
+            </div>
+
+            <div class="calc-form" id="form-roi" role="tabpanel">
+              <div class="field" style="margin-bottom:16px;">
+                <label for="r-value">Valor del inmueble (USD)</label>
+                <input id="r-value" type="number" placeholder="250000" min="1" />
+              </div>
+              <div class="field" style="margin-bottom:16px;">
+                <label for="r-rent">Renta mensual esperada (USD)</label>
+                <input id="r-rent" type="number" placeholder="1800" min="1" />
+              </div>
+              <div class="field" style="margin-bottom:16px;">
+                <label for="r-expenses">Gastos anuales (% del valor)</label>
+                <input id="r-expenses" type="number" placeholder="2.5" step="0.5" min="0" />
+              </div>
+              <div class="field" style="margin-bottom:20px;">
+                <label for="r-years">Horizonte de inversión (años)</label>
+                <input id="r-years" type="number" placeholder="10" min="1" />
+              </div>
+              <button class="btn btn-primary" id="calc-roi-btn" type="button" style="width:100%;">Calcular ROI</button>
+            </div>
+          </div>
+
+          <div class="calc-result" aria-live="polite" aria-label="Resultado">
+            <h3>Resultado estimado</h3>
+            <p class="result-amount">—</p>
+            <div class="result-breakdown">
+              <div class="breakdown-item"><span>Ingresa los datos</span><span>y calculamos</span></div>
+            </div>
+            <p class="calc-disclaimer">Cálculo orientativo. La tasa real depende de tu perfil en Datacrédito.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="precalificacion" aria-labelledby="precal-heading">
+      <div class="container">
+        <div class="precal-layout">
+          <div class="precal-info">
+            <span class="section-label">Evaluación inicial</span>
+            <h2 id="precal-heading">¿Calificas para crédito hipotecario en Colombia?</h2>
+            <p>Llena el formulario y en segundos te decimos cómo está tu perfil. Sin costo, sin compromiso, sin que nadie te llame si no quieres.</p>
+            <div class="info-step">
+              <div class="step-num">1</div>
+              <div class="step-text"><h4>Llena tus datos básicos</h4><p>Nombre, contacto, ingresos y qué tipo de crédito buscas.</p></div>
+            </div>
+            <div class="info-step">
+              <div class="step-num">2</div>
+              <div class="step-text"><h4>Evaluación en segundos</h4><p>El sistema revisa si tu perfil encaja con los criterios de elegibilidad.</p></div>
+            </div>
+            <div class="info-step">
+              <div class="step-num">3</div>
+              <div class="step-text"><h4>Un asesor te contacta</h4><p>Si tu perfil es viable, te llamamos en máximo 24 horas hábiles.</p></div>
+            </div>
+          </div>
+
+          <div class="precal-card">
+            <form id="precal-form" novalidate>
+              <div class="form-row" style="margin-bottom:16px;">
+                <div class="field">
+                  <label for="p-name">Nombre completo *</label>
+                  <input id="p-name" name="name" type="text" placeholder="Carlos Ramírez" autocomplete="name" />
+                  <span class="field-error" role="alert"></span>
+                </div>
+                <div class="field">
+                  <label for="p-email">Correo electrónico *</label>
+                  <input id="p-email" name="email" type="email" placeholder="carlos@correo.com" autocomplete="email" />
+                  <span class="field-error" role="alert"></span>
+                </div>
+                <div class="field">
+                  <label for="p-phone">Celular *</label>
+                  <input id="p-phone" name="phone" type="tel" placeholder="+57 300 000 0000" autocomplete="tel" />
+                  <span class="field-error" role="alert"></span>
+                </div>
+                <div class="field">
+                  <label for="p-income">Ingreso mensual (USD) *</label>
+                  <input id="p-income" name="income" type="number" placeholder="4500" min="0" />
+                  <span class="field-error" role="alert"></span>
+                </div>
+                <div class="field">
+                  <label for="p-employment">Situación laboral *</label>
+                  <select id="p-employment" name="employment">
+                    <option value="">Selecciona</option>
+                    <option value="employee">Empleado con contrato</option>
+                    <option value="self-employed">Independiente</option>
+                    <option value="business-owner">Dueño de negocio</option>
+                  </select>
+                  <span class="field-error" role="alert"></span>
+                </div>
+                <div class="field">
+                  <label for="p-interest">Tipo de crédito *</label>
+                  <select id="p-interest" name="interest">
+                    <option value="">Selecciona</option>
+                    <option value="purchase">Primera vivienda</option>
+                    <option value="investment">Inversión / finca raíz</option>
+                    <option value="refinance">Refinanciación</option>
+                  </select>
+                  <span class="field-error" role="alert"></span>
+                </div>
+              </div>
+              <p class="form-disclaimer">Al enviar autorizas que un asesor de Mi Casa Crédito te contacte. Sin spam.</p>
+              <button type="submit" class="btn btn-primary" style="width:100%;">Ver si califico</button>
+              <div id="eligibility-result" class="eligibility-result" role="status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ventajas" aria-labelledby="ventajas-heading">
+      <div class="container">
+        <span class="section-label">Por qué elegirnos</span>
+        <h2 class="section-title" id="ventajas-heading">No somos un banco. Eso cambia todo.</h2>
+        <p class="section-sub">Especializados en crédito hipotecario en Colombia. No somos un banco, y eso hace la diferencia.</p>
+        <div class="ventajas-grid">
+          <div class="ventaja">
+            <div class="ventaja-icon" aria-hidden="true">⚡</div>
+            <h3>Pre-aprobación en 24-48 horas</h3>
+            <p>Sin esperar semanas. Una vez recibimos tus documentos, te respondemos rápido.</p>
+          </div>
+          <div class="ventaja">
+            <div class="ventaja-icon" aria-hidden="true">🤝</div>
+            <h3>Un asesor, no un call center</h3>
+            <p>La misma persona te acompaña desde la evaluación hasta el desembolso. Sabes con quién hablas.</p>
+          </div>
+          <div class="ventaja">
+            <div class="ventaja-icon" aria-hidden="true">📄</div>
+            <h3>Sabes qué firmás antes de firmar</h3>
+            <p>Te explicamos cada cláusula. Nada de letra menuda ni cargos que aparecen después.</p>
+          </div>
+          <div class="ventaja">
+            <div class="ventaja-icon" aria-hidden="true">📱</div>
+            <h3>Todo desde el celular</h3>
+            <p>Sube documentos, firma digitalmente y sigue el estado de tu crédito sin ir a ninguna oficina.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" aria-labelledby="faq-heading">
+      <div class="container">
+        <span class="section-label">Preguntas frecuentes</span>
+        <h2 class="section-title" id="faq-heading" style="text-align:center;">Lo que más nos preguntan</h2>
+        <p class="section-sub" style="text-align:center;">¿No encuentras lo que buscas? Escríbenos en el chat.</p>
+        <div class="faq-list" role="list">
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">¿Cuánto ingreso necesito para que me aprueben? <span class="faq-chevron" aria-hidden="true">▼</span></button>
+            <div class="faq-answer"><p>La regla general es que la cuota mensual no supere el 30-35% de tu ingreso neto. Si ganas $6 millones COP al mes, puedes aspirar a una cuota de hasta $2 millones, lo que equivale aproximadamente a un crédito de $180-200 millones COP a 20 años. Si no alcanzas solo, puedes incluir un codeudor para sumar ingresos.</p></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">¿Qué es VIS y cómo afecta mi crédito? <span class="faq-chevron" aria-hidden="true">▼</span></button>
+            <div class="faq-answer"><p>VIS (Vivienda de Interés Social) son inmuebles con precio hasta aprox $150 millones COP. Para VIS hay condiciones especiales: financiamos hasta el 90% del valor y pueden aplicar subsidios del gobierno. Para inmuebles No VIS el financiamiento es hasta el 80% y las tasas son de mercado. En la evaluación te decimos cuál aplica a tu caso.</p></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">¿Puedo aplicar si soy independiente o tengo negocio propio? <span class="faq-chevron" aria-hidden="true">▼</span></button>
+            <div class="faq-answer"><p>Sí, trabajamos con independientes y empresarios. En estos casos analizamos la declaración de renta de los últimos 2 años y los extractos bancarios para promediar el ingreso. No necesitas carta laboral, pero sí que los ingresos sean consistentes y verificables.</p></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">¿Cuánto demora el proceso desde que aplico? <span class="faq-chevron" aria-hidden="true">▼</span></button>
+            <div class="faq-answer"><p>La pre-aprobación inicial toma 24 a 48 horas hábiles desde que recibimos los documentos. El proceso completo, desde la radicación formal hasta el desembolso, está entre 15 y 30 días hábiles dependiendo del banco y del estudio de títulos del inmueble.</p></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false">¿La evaluación inicial tiene algún costo? <span class="faq-chevron" aria-hidden="true">▼</span></button>
+            <div class="faq-answer"><p>No. La evaluación y la asesoría previa son completamente gratuitas. Los costos asociados al crédito (estudio, avalúo, notaría) te los explicamos con detalle antes de que tomes cualquier decisión. Sin sorpresas.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-brand">Mi Casa Crédito</p>
+        <p>Especialistas en crédito hipotecario · Colombia</p>
+      </div>
+      <div class="footer-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#precalificacion">Precalificación</a>
+        <a href="#faq">Preguntas</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="chat-widget" role="complementary" aria-label="Asistente virtual">
+    <div class="chat-panel" id="chat-panel" aria-hidden="true">
+      <div class="chat-header">
+        <div class="chat-avatar" aria-hidden="true">🏠</div>
+        <div class="chat-header-info">
+          <h4>Carlos · Asesor virtual</h4>
+          <p>Mi Casa Crédito · En línea</p>
+        </div>
+        <button class="chat-header-close" id="chat-close" aria-label="Cerrar chat">✕</button>
+      </div>
+      <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-label="Conversación"></div>
+      <div class="chat-input-area">
+        <input id="chat-input" type="text" placeholder="Escribe tu pregunta..." autocomplete="off" maxlength="500" aria-label="Mensaje" />
+        <button class="chat-send" id="chat-send" aria-label="Enviar">➤</button>
+      </div>
+      <div class="chat-disclaimer">Orientación por IA + asesor humano. Tu información no se almacena en el servidor.</div>
+    </div>
+    <button class="chat-toggle" id="chat-toggle" aria-label="Abrir asistente virtual" aria-expanded="false" aria-controls="chat-panel">
+      💬
+      <span class="chat-bubble-count" id="chat-count" aria-label="1 mensaje nuevo">1</span>
+    </button>
+  </div>
+
+  <!-- Motion stack: Three.js → Vanta (3D hero) → GSAP → ScrollTrigger → Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.3.3/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+  <script src="js/main.js"></script>
+  <script src="js/calculator.js"></script>
+  <script src="js/precalificacion.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/motion.js"></script>
+</body>
+</html>
