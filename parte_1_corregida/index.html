@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Casa Crédito | Precalificación rápida</title>
+  <style>
+    :root {
+      --primary: #0b4ea2;
+      --primary-dark: #083b7a;
+      --accent: #14b8a6;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --danger: #b91c1c;
+      --success: #047857;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 24px 0;
+    }
+
+    /* BUG #7 CORREGIDO: width fijo → max-width + width:100% para responsividad */
+    .container {
+      max-width: 1180px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 700;
+      margin-left: 16px;
+    }
+
+    main {
+      padding: 36px 0 64px;
+    }
+
+    /* BUG #8 CORREGIDO: hero movido a <main> — eliminamos sus estilos del header */
+    .hero {
+      padding: 54px 0 32px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-card,
+    .form-card,
+    .calculator-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.1);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(20, 184, 166, 0.14);
+      color: var(--primary-dark);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    h2 {
+      font-size: 42px;
+      line-height: 1.06;
+      margin: 18px 0 12px;
+    }
+
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field.full {
+      grid-column: span 2;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      padding: 12px 13px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(11, 78, 162, 0.14);
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 13px 18px;
+      background: var(--primary);
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: var(--primary-dark);
+    }
+
+    .secondary-button {
+      background: var(--accent);
+      color: #063b36;
+    }
+
+    .status {
+      min-height: 24px;
+      margin-top: 14px;
+      font-weight: 700;
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .status.success {
+      color: var(--success);
+    }
+
+    .result-box {
+      margin-top: 18px;
+      padding: 16px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <strong>Mi Casa Crédito</strong>
+      <nav aria-label="Navegación principal">
+        <a href="#precalificacion">Precalificación</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- BUG #8 CORREGIDO: sección hero movida a <main> — no pertenece al <header> -->
+  <main class="container">
+    <section class="hero" aria-labelledby="hero-heading">
+      <div>
+        <span class="badge">Evaluación inicial gratuita</span>
+        <h1 id="hero-heading">Conoce si puedes iniciar tu proceso de crédito</h1>
+        <p>
+          Completa una evaluación inicial para que nuestro equipo pueda orientarte sobre alternativas de crédito,
+          hipoteca o inversión inmobiliaria.
+        </p>
+      </div>
+      <div class="hero-card">
+        <strong>Proceso digital</strong>
+        <p>Formulario, precalificación básica, asesoría y seguimiento desde CRM.</p>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section id="precalificacion" class="form-card" aria-labelledby="form-title">
+        <h2 id="form-title">Precalificación rápida</h2>
+        <form id="credit-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="fullName">Nombre completo</label>
+              <input id="fullName" name="fullName" type="text" placeholder="Ej: Ana Pérez" />
+            </div>
+
+            <div class="field">
+              <!-- BUG #1 CORREGIDO: for="correo" no coincidía con id="email" -->
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="ana@email.com" />
+            </div>
+
+            <div class="field">
+              <label for="phone">Teléfono</label>
+              <input id="phone" name="phone" type="tel" placeholder="+57 300 000 0000" />
+            </div>
+
+            <div class="field">
+              <label for="income">Ingreso mensual estimado (USD)</label>
+              <input id="income" name="income" type="number" min="0" placeholder="4500" />
+            </div>
+
+            <div class="field">
+              <label for="employment">Situación laboral</label>
+              <select id="employment" name="employment">
+                <option value="">Selecciona una opción</option>
+                <option value="employee">Empleado</option>
+                <option value="self-employed">Independiente</option>
+                <option value="business-owner">Dueño de negocio</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="interest">Tipo de interés</label>
+              <select id="interest" name="interest">
+                <option value="purchase">Compra de vivienda</option>
+                <option value="investment">Inversión</option>
+                <option value="refinance">Refinanciamiento</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="message">Mensaje</label>
+              <textarea id="message" name="message" rows="4" placeholder="Cuéntanos qué necesitas"></textarea>
+            </div>
+          </div>
+
+          <button type="submit">Enviar evaluación</button>
+          <div id="form-status" class="status" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <section id="calculadora" class="calculator-card" aria-labelledby="calculator-title">
+        <h2 id="calculator-title">Calculadora de pago estimado</h2>
+        <p>Calcula una cuota mensual aproximada según monto, tasa y plazo.</p>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="loanAmount">Monto del crédito (USD)</label>
+            <input id="loanAmount" type="number" value="300000" />
+          </div>
+          <div class="field">
+            <label for="annualRate">Tasa anual (%)</label>
+            <input id="annualRate" type="number" value="6.5" step="0.1" />
+          </div>
+          <div class="field">
+            <label for="years">Plazo en años</label>
+            <input id="years" type="number" value="30" />
+          </div>
+          <div class="field" style="display:flex;align-items:end;">
+            <button id="calculate-payment" class="secondary-button" type="button">Calcular</button>
+          </div>
+        </div>
+
+        <div id="payment-result" class="result-box">Tu resultado aparecerá aquí.</div>
+      </section>
+    </div>
+
+    <section id="contacto" style="margin-top: 28px;">
+      <p><strong>Nota:</strong> Esta página es parte de una prueba técnica. El candidato debe depurarla, mejorarla y documentar sus correcciones.</p>
+    </section>
+  </main>
+
+  <script>
+    const form        = document.getElementById('credit-form');
+    const statusBox   = document.getElementById('form-status');
+    const paymentBtn  = document.getElementById('calculate-payment');
+    const paymentResult = document.getElementById('payment-result');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const name        = document.getElementById('fullName').value.trim();
+      const email       = document.getElementById('email').value.trim();
+      const phone       = document.getElementById('phone').value.trim();
+      const incomeInput = document.getElementById('income');
+      const employment  = document.getElementById('employment').value;
+      const interest    = document.getElementById('interest').value;
+      const message     = document.getElementById('message').value.trim();
+
+      // BUG #3 CORREGIDO: faltaba return — sin él el código seguía ejecutándose
+      // aunque la validación fallara, mostrando éxito con datos inválidos.
+      if (!isValidLead(name, email, phone, incomeInput.value, employment)) {
+        statusBox.textContent = 'Por favor revisa los campos obligatorios antes de enviar.';
+        statusBox.className = 'status error';
+        return;
+      }
+
+      // BUG #4 CORREGIDO: incomeInput era el elemento DOM, no su valor numérico.
+      // lead.income > 5000 siempre era false al comparar un objeto con un número.
+      const leadData = {
+        name:       name,
+        email:      email,
+        phone:      phone,
+        income:     Number(incomeInput.value),
+        employment: employment,
+        interest:   interest,
+        message:    message,
+        createdAt:  new Date().toISOString()
+      };
+
+      const eligibility = calculateEligibility(leadData);
+      localStorage.setItem('mcc_last_lead', JSON.stringify(leadData));
+
+      statusBox.textContent = eligibility.message;
+      statusBox.className = 'status success';
+      form.reset();
+    });
+
+    function isValidLead(name, email, phone, income, employment) {
+      const phoneRegex = /^[0-9+()\-\s]{7,20}$/;
+
+      // BUG #2 CORREGIDO: && debía ser || — con && solo fallaba si AMBAS
+      // condiciones eran verdaderas al mismo tiempo; un nombre de 1 carácter
+      // con email válido pasaba la validación sin problema.
+      if (name.length < 2 || !email.includes('@')) {
+        return false;
+      }
+
+      if (!phoneRegex.test(phone)) {
+        return false;
+      }
+
+      if (!income || Number(income) <= 0 || !employment) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function calculateEligibility(lead) {
+      let score = 0;
+
+      if (lead.income > 5000) {
+        score += 40;
+      } else if (lead.income > 2500) {
+        score += 20;
+      }
+
+      // BUG #5 CORREGIDO: = (asignación) debía ser === (comparación estricta).
+      // La asignación siempre retorna el string 'employee' (truthy), por lo que
+      // todos los usuarios obtenían +25 puntos sin importar su situación laboral.
+      // Además mutaba lead.employment, corrompiendo el objeto.
+      if (lead.employment === 'employee') {
+        score += 25;
+      }
+
+      if (lead.interest === 'investment') {
+        score += 10;
+      }
+
+      if (score >= 55) {
+        return {
+          score,
+          message: 'Gracias. Tu perfil parece elegible para una revisión inicial con un asesor.'
+        };
+      }
+
+      return {
+        score,
+        message: 'Gracias. Necesitamos revisar más información para orientarte mejor.'
+      };
+    }
+
+    paymentBtn.addEventListener('click', function () {
+      const amount     = Number(document.getElementById('loanAmount').value);
+      const annualRate = Number(document.getElementById('annualRate').value);
+      const years      = Number(document.getElementById('years').value);
+
+      if (!amount || !annualRate || !years || amount <= 0 || annualRate <= 0 || years <= 0) {
+        paymentResult.textContent = 'Por favor ingresa valores válidos para calcular.';
+        return;
+      }
+
+      const months = years * 12;
+
+      // BUG #6 CORREGIDO: annualRate es un porcentaje (ej. 6.5), no un decimal.
+      // Sin dividir entre 100, monthlyRate era ~0.54 (54%/mes) en lugar de ~0.005
+      // (0.54%/mes), generando cuotas absurdamente altas (ej. $162.000 en vez de $1.896).
+      const monthlyRate = annualRate / 100 / 12;
+
+      const payment = amount * monthlyRate * Math.pow(1 + monthlyRate, months)
+                      / (Math.pow(1 + monthlyRate, months) - 1);
+
+      const totalPaid   = payment * months;
+      const totalInterest = totalPaid - amount;
+
+      paymentResult.innerHTML =
+        `<div>Cuota mensual estimada: <strong>$${payment.toFixed(2)}</strong></div>` +
+        `<div style="margin-top:8px;font-size:13px;font-weight:400;">` +
+        `Total a pagar: $${totalPaid.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ` +
+        `· Intereses totales: $${totalInterest.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` +
+        `</div>`;
+    });
+  </script>
+</body>
+</html>
