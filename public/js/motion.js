@@ -117,14 +117,7 @@
     },
   });
 
-  // ── Calculadora iframe ────────────────────────────────────────────────────
-  const calcWrapper = document.querySelector('#calculadora > .container > div');
-  if (calcWrapper) {
-    gsap.from(calcWrapper, {
-      scrollTrigger: { trigger: '#calculadora', start: 'top 78%', ...BOTH },
-      y: 50, opacity: 0, duration: 0.85, ease: 'power2.out',
-    });
-  }
+  // ── Calculadora iframe — sin animación en el wrapper para evitar reflow ──
 
   // ── Precalificación ───────────────────────────────────────────────────────
   gsap.from('.precal-info', {
@@ -173,15 +166,7 @@
     });
   }
 
-  // ── Refresh ScrollTrigger cuando el iframe cambia de altura ──────────────
-  var _stRefreshTimer;
-  window.addEventListener('message', function(e) {
-    if (e.data && e.data.type === 'calc-height') {
-      clearTimeout(_stRefreshTimer);
-      _stRefreshTimer = setTimeout(function() {
-        ScrollTrigger.refresh();
-      }, 200);
-    }
-  });
+  // No se llama ScrollTrigger.refresh() en calc-height para evitar el
+  // feedback loop: refresh → reposiciona wrapper → ResizeObserver → mensaje → …
 
 }());
