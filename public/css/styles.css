@@ -685,6 +685,20 @@ footer {
 }
 .footer-links a:hover { color: #fff; }
 
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+.footer-contact a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color .15s;
+}
+.footer-contact a:hover { color: #fff; }
+
 /* ----- Chat Widget ----- */
 .chat-widget {
   position: fixed;
