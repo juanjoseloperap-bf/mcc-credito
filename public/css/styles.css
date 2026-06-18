@@ -25,7 +25,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 66px; }
 body {
   margin: 0;
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;

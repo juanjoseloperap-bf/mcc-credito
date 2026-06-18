@@ -1,32 +1,19 @@
-// motion.js — GSAP + Lenis + ScrollTrigger + Vanta + VanillaTilt
+// motion.js — GSAP + ScrollTrigger + Vanta + VanillaTilt (sin Lenis)
 
 (function () {
   'use strict';
 
-  // ── Lenis smooth scroll ───────────────────────────────────────────────────
-  const lenis = new Lenis({
-    duration: 1.1,
-    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    orientation: 'vertical',
-    smoothWheel: true,
-    wheelMultiplier: 0.9,
-  });
-
-  // Exponer para que el iframe resize pueda llamar lenis.resize()
-  window.__lenis = lenis;
-
   gsap.registerPlugin(ScrollTrigger);
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add(time => lenis.raf(time * 1000));
-  gsap.ticker.lagSmoothing(0);
 
-  // Smooth scroll al hacer click en anclas — offset = altura del navbar
+  // ── Smooth scroll nativo para anclas ─────────────────────────────────────
+  // Funciona sin conflicto con iframes — los wheel events nunca se interceptan
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
       const target = document.querySelector(anchor.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      lenis.scrollTo(target, { offset: -66, duration: 1.35 });
+      const top = target.getBoundingClientRect().top + window.scrollY - 66;
+      window.scrollTo({ top, behavior: 'smooth' });
     });
   });
 
@@ -38,8 +25,8 @@
       mouseControls: true,
       touchControls: false,
       gyroControls: false,
-      color: 0x2a9fd6,        // brand blue-light
-      backgroundColor: 0x1b2360, // brand navy
+      color: 0x2a9fd6,
+      backgroundColor: 0x1b2360,
       points: 7.0,
       maxDistance: 22.0,
       spacing: 22.0,
@@ -73,7 +60,7 @@
     const target = parseInt(el.dataset.counter, 10);
     const prefix = el.dataset.prefix || '';
     const suffix = el.dataset.suffix || '';
-    const dur    = 1600;
+    const dur    = 1500;
     const t0     = performance.now();
     function step(now) {
       const p = Math.min((now - t0) / dur, 1);
@@ -93,13 +80,13 @@
     btn.addEventListener('mousemove', e => {
       const r = btn.getBoundingClientRect();
       gsap.to(btn, {
-        x: (e.clientX - r.left - r.width  / 2) * 0.30,
-        y: (e.clientY - r.top  - r.height / 2) * 0.30,
-        duration: 0.38, ease: 'power2.out',
+        x: (e.clientX - r.left - r.width  / 2) * 0.28,
+        y: (e.clientY - r.top  - r.height / 2) * 0.28,
+        duration: 0.36, ease: 'power2.out',
       });
     });
     btn.addEventListener('mouseleave', () => {
-      gsap.to(btn, { x: 0, y: 0, duration: 0.52, ease: 'elastic.out(1.1, 0.5)' });
+      gsap.to(btn, { x: 0, y: 0, duration: 0.50, ease: 'elastic.out(1.1, 0.5)' });
     });
   });
 
@@ -168,7 +155,7 @@
     });
   });
 
-  // ── Hero card — VanillaTilt en desktop, float en mobile ───────────────────
+  // ── Hero card — VanillaTilt desktop / float mobile ────────────────────────
   if (typeof VanillaTilt !== 'undefined' && window.innerWidth > 768) {
     VanillaTilt.init(document.querySelectorAll('.hero-card'), {
       max: 6, speed: 600, glare: true, 'max-glare': 0.10, gyroscope: false,
@@ -178,5 +165,16 @@
       y: -14, duration: 3.8, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.2,
     });
   }
+
+  // ── Refresh ScrollTrigger cuando el iframe cambia de altura ──────────────
+  var _stRefreshTimer;
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.type === 'calc-height') {
+      clearTimeout(_stRefreshTimer);
+      _stRefreshTimer = setTimeout(function() {
+        ScrollTrigger.refresh();
+      }, 200);
+    }
+  });
 
 }());
