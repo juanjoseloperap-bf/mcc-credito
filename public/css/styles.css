@@ -886,8 +886,9 @@ footer {
 
 @media (max-width: 768px) {
   .hero-grid, .precal-layout { grid-template-columns: 1fr; }
-  .hero-grid h1 { font-size: 36px; }
-  .section-title { font-size: 28px; }
+  .hero-grid h1 { font-size: 34px; }
+  .section-title { font-size: 26px; }
+  .section-sub { font-size: 15px; margin-bottom: 32px; }
   .services-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .field.full { grid-column: span 1; }
@@ -904,15 +905,27 @@ footer {
     border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow-md);
     gap: 16px;
+    z-index: 99;
   }
   .hamburger { display: flex; }
   .chat-panel { width: 310px; }
   .ventajas-grid { grid-template-columns: 1fr 1fr; }
+  /* Logo en hero redundante con navbar en mobile */
+  .hero-logo { display: none; }
+  /* Reducir padding de secciones en mobile */
+  #hero { padding: 64px 0 60px; }
+  #servicios, #calculadora, #precalificacion, #ventajas, #faq { padding: 64px 0; }
+  .precal-layout { gap: 36px; }
+  .precal-card { padding: 24px; }
+  /* Hero card full width en mobile */
+  .hero-card { margin-top: 8px; }
 }
 
 @media (max-width: 480px) {
   .hero-buttons { flex-direction: column; }
   .ventajas-grid { grid-template-columns: 1fr; }
   .chat-widget { bottom: 16px; right: 16px; }
-  .hero-grid h1 { font-size: 30px; }
+  .chat-panel { width: calc(100vw - 32px); right: 0; }
+  .hero-grid h1 { font-size: 28px; }
+  .container { padding: 0 18px; }
 }
