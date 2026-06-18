@@ -95,14 +95,24 @@
         <p class="section-sub">Análisis completo: cuota inicial, tasa, costos adicionales, tabla de amortización e informe PDF. Sin registro.</p>
         <div style="width:100%;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(27,35,96,0.13);border:1px solid #e2e6ed;">
           <iframe
+            id="calc-iframe"
             src="/calculadora/"
             title="Calculadora hipotecaria Mi Casa Crédito"
             width="100%"
-            height="780"
-            style="display:block;border:none;"
+            height="820"
+            scrolling="no"
+            style="display:block;border:none;overflow:hidden;transition:height 0.3s ease;"
             loading="lazy"
           ></iframe>
         </div>
+        <script>
+          window.addEventListener('message', function(e) {
+            if (e.data && e.data.type === 'calc-height') {
+              var iframe = document.getElementById('calc-iframe');
+              if (iframe) iframe.style.height = (e.data.height + 24) + 'px';
+            }
+          });
+        </script>
       </div>
     </section>
 
