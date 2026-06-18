@@ -3,10 +3,11 @@
 (function () {
   'use strict';
 
+  if (typeof gsap === 'undefined') return; // CDN no cargó — degradación silenciosa
+
   gsap.registerPlugin(ScrollTrigger);
 
   // ── Smooth scroll nativo para anclas ─────────────────────────────────────
-  // Funciona sin conflicto con iframes — los wheel events nunca se interceptan
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
       const target = document.querySelector(anchor.getAttribute('href'));
@@ -44,8 +45,6 @@
   }
 
   // ── Hero entrance ─────────────────────────────────────────────────────────
-  gsap.set('.hero-grid', { position: 'relative', zIndex: 3 });
-
   const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' }, delay: 0.1 });
   heroTl
     .from('.hero-logo',          { y: -20, opacity: 0, duration: 0.50 })
@@ -70,14 +69,13 @@
     requestAnimationFrame(step);
   }
 
-  // Contadores solo una vez — no tiene sentido re-contar al hacer scroll up
   ScrollTrigger.create({
-    trigger: '.hero-card', start: 'top 85%', once: true,
+    trigger: '.hero-card', start: 'top 90%', once: true,
     onEnter: () => document.querySelectorAll('[data-counter]').forEach(runCounter),
   });
 
-  // ── Botones magnéticos ────────────────────────────────────────────────────
-  document.querySelectorAll('.btn-accent, .btn-primary').forEach(btn => {
+  // ── Botones magnéticos — solo anchors del hero (no el submit del formulario) ──
+  document.querySelectorAll('a.btn-accent, a.btn-primary').forEach(btn => {
     btn.addEventListener('mousemove', e => {
       const r = btn.getBoundingClientRect();
       gsap.to(btn, {
@@ -92,10 +90,13 @@
   });
 
   // ── Navbar scroll shadow ──────────────────────────────────────────────────
-  ScrollTrigger.create({
-    start: 'top -50px', end: 99999,
-    onUpdate: self => document.getElementById('navbar').classList.toggle('scrolled', self.progress > 0),
-  });
+  const navbar = document.getElementById('navbar');
+  if (navbar) {
+    ScrollTrigger.create({
+      start: 'top -50px', end: 99999,
+      onUpdate: self => navbar.classList.toggle('scrolled', self.progress > 0),
+    });
+  }
 
   // toggleActions: "play none none reverse"
   //   → al bajar y entrar: anima hacia adentro
@@ -165,8 +166,5 @@
       y: -14, duration: 3.8, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: 1.2,
     });
   }
-
-  // No se llama ScrollTrigger.refresh() en calc-height para evitar el
-  // feedback loop: refresh → reposiciona wrapper → ResizeObserver → mensaje → …
 
 }());

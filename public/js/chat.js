@@ -1,24 +1,36 @@
-// Widget de chat IA — Parte 2 integrada al sitio
-// URL relativa: funciona en localhost y en Railway sin cambios.
+// Widget de chat IA — integrado al sitio Mi Casa Crédito
 
 const BACKEND_URL = '/api/chat';
 
-const chatToggle  = document.getElementById('chat-toggle');
-const chatPanel   = document.getElementById('chat-panel');
-const chatClose   = document.getElementById('chat-close');
-const chatInput   = document.getElementById('chat-input');
-const chatSend    = document.getElementById('chat-send');
+const chatToggle   = document.getElementById('chat-toggle');
+const chatPanel    = document.getElementById('chat-panel');
+const chatClose    = document.getElementById('chat-close');
+const chatInput    = document.getElementById('chat-input');
+const chatSend     = document.getElementById('chat-send');
 const chatMessages = document.getElementById('chat-messages');
-const chatCount   = document.getElementById('chat-count');
+const chatCount    = document.getElementById('chat-count');
+
+if (!chatToggle || !chatPanel || !chatMessages || !chatInput || !chatSend) {
+  console.warn('Chat widget: elementos del DOM no encontrados');
+} else {
 
 let conversationHistory = [];
 let userName = null;
-let backendAvailable = null; // null = no verificado aún
+let backendAvailable = null;
 
-// Expuesto globalmente para que precalificacion.js pueda pasarlo
 window.chatSetUserName = function(name) {
   userName = name;
 };
+
+// ── AbortSignal con fallback para Android WebView antiguos ───────────────────
+function abortAfter(ms) {
+  if (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) {
+    return AbortSignal.timeout(ms);
+  }
+  const ctrl = new AbortController();
+  setTimeout(() => ctrl.abort(), ms);
+  return ctrl.signal;
+}
 
 // Abrir/cerrar panel
 chatToggle.addEventListener('click', () => {
@@ -26,7 +38,7 @@ chatToggle.addEventListener('click', () => {
   chatToggle.setAttribute('aria-expanded', isOpen);
   chatPanel.setAttribute('aria-hidden', !isOpen);
   if (isOpen) {
-    chatCount.style.display = 'none';
+    if (chatCount) chatCount.style.display = 'none';
     chatInput.focus();
     if (conversationHistory.length === 0) addBotMessage(getWelcome());
   }
@@ -60,7 +72,7 @@ async function sendMessage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: conversationHistory }),
-        signal: AbortSignal.timeout(12000)
+        signal: abortAfter(12000),
       });
       if (!res.ok) throw new Error('backend_error');
       const data = await res.json();
@@ -74,7 +86,7 @@ async function sendMessage() {
     addBotMessage(reply);
   } catch (err) {
     typingEl.remove();
-    if (err.name === 'TimeoutError') {
+    if (err.name === 'TimeoutError' || err.name === 'AbortError') {
       conversationHistory.pop();
       addBotMessage('La respuesta tardó demasiado. ¿Puedes intentar de nuevo?');
     } else {
@@ -123,15 +135,10 @@ function getWelcome() {
   return `${greeting}, soy el asesor virtual de Mi Casa Crédito. Estoy aquí para orientarte sobre opciones de crédito hipotecario. ¿En qué te puedo ayudar?`;
 }
 
-// Verificar si el backend está disponible
+// Health-check ligero: GET al root (no consume créditos de IA)
 async function checkBackend() {
   try {
-    const res = await fetch(BACKEND_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: [{ role: 'user', content: 'ping' }] }),
-      signal: AbortSignal.timeout(2000)
-    });
+    const res = await fetch('/', { method: 'GET', signal: abortAfter(2000) });
     return res.ok;
   } catch {
     return false;
@@ -146,7 +153,7 @@ async function simulateResponse(history) {
   const last = userMessages[count - 1]?.content.toLowerCase() || '';
 
   if (last.includes('tasa') || last.includes('interés') || last.includes('interes')) {
-    return 'Las tasas arrancan desde el 5.9% anual para primera vivienda. La tasa exacta depende de tu perfil crediticio, el monto y el plazo. ¿Quieres que te estime la cuota mensual con algún número en mente?';
+    return 'Las tasas de crédito hipotecario en Colombia arrancan desde el 11% E.A. La tasa exacta depende de tu perfil crediticio, el monto y el plazo. ¿Quieres que te estime la cuota mensual con algún número en mente?';
   }
   if (last.includes('requisito') || last.includes('documento') || last.includes('necesito para')) {
     return 'Necesitas: identificación vigente, comprobante de ingresos de los últimos 3 meses y estados de cuenta bancarios. Si eres independiente o tienes negocio propio, también declaración de renta de los últimos 2 años. ¿Eres empleado o trabajas por cuenta propia?';
@@ -155,7 +162,7 @@ async function simulateResponse(history) {
     return 'Para calcular la cuota necesito: monto del crédito, tasa anual estimada y plazo en años. También puedes usar la calculadora de hipoteca en la sección "Calculadora" del menú — te da el resultado al instante. ¿Tienes esos datos a la mano?';
   }
   if (last.includes('inversion') || last.includes('inversión') || last.includes('renta') || last.includes('roi') || last.includes('arrendar')) {
-    return 'Para inversión en propiedad de renta financiamos hasta el 75% del valor del inmueble. En la sección Calculadora hay una pestaña de ROI donde puedes estimar el retorno anual y el cap rate. ¿Ya tienes un inmueble en mente o estás comparando opciones?';
+    return 'Para inversión en propiedad de renta financiamos hasta el 75% del valor del inmueble. En la sección Calculadora puedes estimar el retorno anual y el cap rate. ¿Ya tienes un inmueble en mente o estás comparando opciones?';
   }
   if (last.includes('refinanc')) {
     return 'Con el refinanciamiento puedes reducir tu cuota hasta un 30%, mejorar la tasa o acceder a liquidez sobre el valor de tu propiedad. ¿Tu objetivo principal es bajar la cuota mensual o necesitas capital?';
@@ -171,12 +178,13 @@ async function simulateResponse(history) {
   }
 
   const flow = [
-    '¡Hola! Soy Carlos, asesor virtual de Mi Casa Crédito. Puedo orientarte sobre créditos hipotecarios, ayudarte a calcular tu cuota o explicarte el proceso. ¿En qué te puedo ayudar?',
     '¿Tienes alguna propiedad en mente o estás evaluando cuánto crédito podrías obtener?',
     '¿Cuál es tu ingreso mensual aproximado? Con ese dato te puedo estimar el rango de crédito al que podrías acceder.',
     '¿Eres empleado formal, trabajas de forma independiente o tienes tu propio negocio?',
-    'Con esa información tu perfil tiene buenas condiciones para evaluarse. Te recomiendo completar el formulario en la sección "Precalificación" — un asesor te contacta en 24 horas sin costo. ¿Tienes alguna otra pregunta?'
+    'Con esa información tu perfil tiene buenas condiciones para evaluarse. Te recomiendo completar el formulario en la sección "Precalificación" — un asesor te contacta en 24 horas sin costo. ¿Tienes alguna otra pregunta?',
   ];
 
   return flow[Math.min(count - 1, flow.length - 1)];
 }
+
+} // end if (chatToggle && ...)

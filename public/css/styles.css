@@ -182,8 +182,11 @@ body {
   height: 2px;
   background: var(--text);
   border-radius: 2px;
-  transition: all .2s;
+  transition: transform .22s ease, opacity .18s ease;
 }
+.hamburger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ----- Hero ----- */
 #hero {
@@ -453,7 +456,6 @@ body {
   margin-bottom: 16px;
 }
 
-.field { }
 .field.full { grid-column: span 2; }
 
 .field label {
@@ -636,7 +638,7 @@ body {
   overflow: hidden;
   transition: max-height .28s ease;
 }
-.faq-item.open .faq-answer { max-height: 300px; }
+.faq-item.open .faq-answer { max-height: 600px; }
 
 .faq-answer p {
   padding: 0 22px 18px;
@@ -905,7 +907,7 @@ footer {
     border-bottom: 1px solid var(--border);
     box-shadow: var(--shadow-md);
     gap: 16px;
-    z-index: 99;
+    z-index: 101;
   }
   .hamburger { display: flex; }
   .chat-panel { width: 310px; }
