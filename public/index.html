@@ -151,9 +151,19 @@
         </div>
         <script>
           window.addEventListener('message', function(e) {
-            if (e.data && e.data.type === 'calc-height') {
+            if (!e.data) return;
+            // Resize dinámico del iframe
+            if (e.data.type === 'calc-height') {
               var iframe = document.getElementById('calc-iframe');
               if (iframe) iframe.style.height = (e.data.height + 24) + 'px';
+            }
+            // Imprimir reporte: el padre abre la ventana para evitar el bloqueo de popups del iframe
+            if (e.data.type === 'mcc-open-print' && e.data.html) {
+              var w = window.open('', '_blank');
+              if (!w) return;
+              w.document.open();
+              w.document.write(e.data.html);
+              w.document.close();
             }
           });
         </script>
