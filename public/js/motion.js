@@ -70,6 +70,7 @@
     requestAnimationFrame(step);
   }
 
+  // Contadores solo una vez — no tiene sentido re-contar al hacer scroll up
   ScrollTrigger.create({
     trigger: '.hero-card', start: 'top 85%', once: true,
     onEnter: () => document.querySelectorAll('[data-counter]').forEach(runCounter),
@@ -96,61 +97,67 @@
     onUpdate: self => document.getElementById('navbar').classList.toggle('scrolled', self.progress > 0),
   });
 
-  // ── Servicios — reveal + VanillaTilt ─────────────────────────────────────
+  // toggleActions: "play none none reverse"
+  //   → al bajar y entrar: anima hacia adentro
+  //   → al subir y salir:  revierte hacia afuera
+  const BOTH = { toggleActions: 'play none none reverse' };
+
+  // ── Servicios ─────────────────────────────────────────────────────────────
+  var tiltDone = false;
   gsap.from('.service-card', {
-    scrollTrigger: { trigger: '#servicios', start: 'top 78%' },
+    scrollTrigger: { trigger: '#servicios', start: 'top 78%', ...BOTH },
     y: 60, opacity: 0, duration: 0.68, stagger: 0.16, ease: 'power2.out',
     onComplete() {
-      if (typeof VanillaTilt !== 'undefined' && window.innerWidth > 768) {
-        document.querySelectorAll('.service-card').forEach(c => c.classList.add('has-tilt'));
-        VanillaTilt.init(document.querySelectorAll('.service-card'), {
-          max: 8, speed: 400, glare: false, gyroscope: false,
-        });
-      }
+      if (tiltDone || typeof VanillaTilt === 'undefined' || window.innerWidth <= 768) return;
+      tiltDone = true;
+      document.querySelectorAll('.service-card').forEach(c => c.classList.add('has-tilt'));
+      VanillaTilt.init(document.querySelectorAll('.service-card'), {
+        max: 8, speed: 400, glare: false, gyroscope: false,
+      });
     },
   });
 
-  // ── Calculadora iframe reveal ─────────────────────────────────────────────
+  // ── Calculadora iframe ────────────────────────────────────────────────────
   const calcWrapper = document.querySelector('#calculadora > .container > div');
   if (calcWrapper) {
     gsap.from(calcWrapper, {
-      scrollTrigger: { trigger: '#calculadora', start: 'top 78%' },
+      scrollTrigger: { trigger: '#calculadora', start: 'top 78%', ...BOTH },
       y: 50, opacity: 0, duration: 0.85, ease: 'power2.out',
     });
   }
 
   // ── Precalificación ───────────────────────────────────────────────────────
   gsap.from('.precal-info', {
-    scrollTrigger: { trigger: '#precalificacion', start: 'top 78%' },
+    scrollTrigger: { trigger: '#precalificacion', start: 'top 78%', ...BOTH },
     x: -60, opacity: 0, duration: 0.85, ease: 'power2.out',
   });
   gsap.from('.precal-card', {
-    scrollTrigger: { trigger: '#precalificacion', start: 'top 78%' },
+    scrollTrigger: { trigger: '#precalificacion', start: 'top 78%', ...BOTH },
     x: 60, opacity: 0, duration: 0.85, ease: 'power2.out',
   });
 
   // ── Ventajas ──────────────────────────────────────────────────────────────
   gsap.from('.ventaja', {
-    scrollTrigger: { trigger: '#ventajas', start: 'top 80%' },
+    scrollTrigger: { trigger: '#ventajas', start: 'top 80%', ...BOTH },
     y: 48, opacity: 0, scale: 0.95, duration: 0.62, stagger: 0.12, ease: 'back.out(1.5)',
   });
 
   // ── FAQ ───────────────────────────────────────────────────────────────────
   gsap.from('.faq-item', {
-    scrollTrigger: { trigger: '#faq', start: 'top 82%' },
+    scrollTrigger: { trigger: '#faq', start: 'top 82%', ...BOTH },
     y: 30, opacity: 0, duration: 0.52, stagger: 0.09, ease: 'power2.out',
   });
 
   // ── Section títulos & labels ──────────────────────────────────────────────
   gsap.utils.toArray('.section-title').forEach(el => {
     gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 88%' },
+      scrollTrigger: { trigger: el, start: 'top 88%', ...BOTH },
       y: 24, opacity: 0, duration: 0.58, ease: 'power2.out',
     });
   });
   gsap.utils.toArray('.section-label').forEach(el => {
     gsap.from(el, {
-      scrollTrigger: { trigger: el, start: 'top 92%' },
+      scrollTrigger: { trigger: el, start: 'top 92%', ...BOTH },
       y: 14, opacity: 0, duration: 0.42, ease: 'power1.out',
     });
   });
