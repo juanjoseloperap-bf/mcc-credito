@@ -1,4 +1,4 @@
-:HL["/calculadora/_next/static/chunks/2dwbk79ihc330.css","style"]
+:HL["/calculadora/_next/static/chunks/1vf5geiz4l1ov.css","style"]
 :HL["/calculadora/_next/static/media/1b99372b3eaef0c8-s.p.1gsd1jahc5dg_.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/calculadora/_next/static/media/caa3a2e1cccd8315-s.p.0wgildi0cnwt9.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"ND7tvUjhWhw57z5An4SJE"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}},"staleTime":300,"buildId":"msIsKrCEspL8e-L6NJFHn"}
