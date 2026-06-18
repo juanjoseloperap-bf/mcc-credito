@@ -18,7 +18,9 @@
 
   <header id="navbar" role="banner">
     <div class="container nav-inner">
-      <a href="#hero" class="nav-logo" aria-label="Mi Casa Crédito inicio">Mi Casa <span>Crédito</span></a>
+      <a href="#hero" class="nav-logo" aria-label="Mi Casa Crédito inicio">
+        <img src="/images/logo-transformamos-vidas.png" alt="Mi Casa Crédito" height="38" />
+      </a>
       <nav aria-label="Navegación principal">
         <ul class="nav-links">
           <li><a href="#servicios">Servicios</a></li>
@@ -40,6 +42,9 @@
     <section id="hero" aria-labelledby="hero-heading">
       <div class="container hero-grid">
         <div class="hero-text">
+          <div class="hero-logo">
+            <img src="/images/logo-mcc-white.png" alt="Mi Casa Crédito" />
+          </div>
           <p class="hero-eyebrow">Crédito hipotecario en Colombia</p>
           <h1 id="hero-heading">Tu casa propia, sin la vuelta del banco</h1>
           <p class="hero-desc">Con más de 13 años en el sector inmobiliario, te acompañamos desde la evaluación hasta la llave en mano. Sin filas, sin papel, sin intermediarios.</p>
@@ -51,10 +56,22 @@
         <div class="hero-card" role="complementary" aria-label="Estadísticas">
           <h3>13 años abriendo puertas</h3>
           <div class="hero-stats">
-            <div class="stat"><strong data-counter="2800" data-prefix="+" data-suffix="">+2.800</strong><span>familias con crédito aprobado</span></div>
-            <div class="stat"><strong>48 h</strong><span>para la pre-aprobación</span></div>
-            <div class="stat"><strong>Desde 11% EA</strong><span>tasa efectiva anual</span></div>
-            <div class="stat"><strong data-counter="30" data-prefix="" data-suffix=" días">30 días</strong><span>proceso completo</span></div>
+            <div class="stat">
+              <strong data-counter="2800" data-prefix="+" data-suffix="">+2.800</strong>
+              <span>familias con crédito aprobado</span>
+            </div>
+            <div class="stat">
+              <strong>48 h</strong>
+              <span>para la pre-aprobación</span>
+            </div>
+            <div class="stat">
+              <strong>Desde 11% EA</strong>
+              <span>tasa efectiva anual</span>
+            </div>
+            <div class="stat">
+              <strong data-counter="30" data-prefix="" data-suffix=" días">30 días</strong>
+              <span>proceso completo</span>
+            </div>
           </div>
         </div>
       </div>
@@ -66,24 +83,45 @@
         <h2 class="section-title" id="servicios-heading">Tres productos, un solo objetivo</h2>
         <p class="section-sub">Sea cual sea tu momento, tenemos una solución que se ajusta.</p>
         <div class="services-grid">
+
           <article class="service-card">
-            <div class="service-icon" aria-hidden="true">🏠</div>
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+            </div>
             <h3>Primera vivienda</h3>
             <p>Cuota inicial desde el 10%. Financiamos VIS y No VIS con plazos hasta 30 años. Un asesor te explica cada paso antes de que firmes.</p>
             <span class="service-tag">Desde 11% EA</span>
           </article>
+
           <article class="service-card">
-            <div class="service-icon" aria-hidden="true">🔄</div>
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="23 4 23 10 17 10"/>
+                <polyline points="1 20 1 14 7 14"/>
+                <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+              </svg>
+            </div>
             <h3>Refinanciación</h3>
             <p>¿Tu hipoteca actual te está pesando? Revisamos si podemos mejorar la tasa, bajar la cuota o sacar liquidez sobre lo que ya pagaste.</p>
             <span class="service-tag">Cuota hasta 30% menor</span>
           </article>
+
           <article class="service-card">
-            <div class="service-icon" aria-hidden="true">📈</div>
+            <div class="service-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+            </div>
             <h3>Inversión en finca raíz</h3>
             <p>Financia el apartamento o local que vas a arrendar. Evaluamos el flujo de caja del inmueble y te decimos si el negocio cuadra.</p>
             <span class="service-tag">Hasta 75% del valor</span>
           </article>
+
         </div>
       </div>
     </section>
@@ -93,7 +131,7 @@
         <span class="section-label">Herramienta</span>
         <h2 class="section-title" id="calculadora-heading">Haz tus números antes de decidir</h2>
         <p class="section-sub">Análisis completo: cuota inicial, tasa, costos adicionales, tabla de amortización e informe PDF. Sin registro.</p>
-        <div style="width:100%;border-radius:16px;overflow:hidden;box-shadow:0 8px 40px rgba(27,35,96,0.13);border:1px solid #e2e6ed;">
+        <div style="width:100%;border-radius:14px;overflow:hidden;box-shadow:0 8px 40px rgba(27,35,96,0.12);border:1px solid #e4e9f2;">
           <iframe
             id="calc-iframe"
             src="/calculadora/"
@@ -125,21 +163,30 @@
             <p>Llena el formulario y en segundos te decimos cómo está tu perfil. Sin costo, sin compromiso, sin que nadie te llame si no quieres.</p>
             <div class="info-step">
               <div class="step-num">1</div>
-              <div class="step-text"><h4>Llena tus datos básicos</h4><p>Nombre, contacto, ingresos y qué tipo de crédito buscas.</p></div>
+              <div class="step-text">
+                <h4>Llena tus datos básicos</h4>
+                <p>Nombre, contacto, ingresos y qué tipo de crédito buscas.</p>
+              </div>
             </div>
             <div class="info-step">
               <div class="step-num">2</div>
-              <div class="step-text"><h4>Evaluación en segundos</h4><p>El sistema revisa si tu perfil encaja con los criterios de elegibilidad.</p></div>
+              <div class="step-text">
+                <h4>Evaluación en segundos</h4>
+                <p>El sistema revisa si tu perfil encaja con los criterios de elegibilidad.</p>
+              </div>
             </div>
             <div class="info-step">
               <div class="step-num">3</div>
-              <div class="step-text"><h4>Un asesor te contacta</h4><p>Si tu perfil es viable, te llamamos en máximo 24 horas hábiles.</p></div>
+              <div class="step-text">
+                <h4>Un asesor te contacta</h4>
+                <p>Si tu perfil es viable, te llamamos en máximo 24 horas hábiles.</p>
+              </div>
             </div>
           </div>
 
           <div class="precal-card">
             <form id="precal-form" novalidate>
-              <div class="form-row" style="margin-bottom:16px;">
+              <div class="form-row">
                 <div class="field">
                   <label for="p-name">Nombre completo *</label>
                   <input id="p-name" name="name" type="text" placeholder="Carlos Ramírez" autocomplete="name" />
@@ -156,8 +203,8 @@
                   <span class="field-error" role="alert"></span>
                 </div>
                 <div class="field">
-                  <label for="p-income">Ingreso mensual (USD) *</label>
-                  <input id="p-income" name="income" type="number" placeholder="4500" min="0" />
+                  <label for="p-income">Ingreso mensual (COP) *</label>
+                  <input id="p-income" name="income" type="number" placeholder="5.000.000" min="0" />
                   <span class="field-error" role="alert"></span>
                 </div>
                 <div class="field">
@@ -194,28 +241,51 @@
       <div class="container">
         <span class="section-label">Por qué elegirnos</span>
         <h2 class="section-title" id="ventajas-heading">No somos un banco. Eso cambia todo.</h2>
-        <p class="section-sub">Especializados en crédito hipotecario en Colombia. No somos un banco, y eso hace la diferencia.</p>
+        <p class="section-sub">Especializados en crédito hipotecario en Colombia. Más ágiles, más claros, con acompañamiento real.</p>
         <div class="ventajas-grid">
+
           <div class="ventaja">
-            <div class="ventaja-icon" aria-hidden="true">⚡</div>
+            <div class="ventaja-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
             <h3>Pre-aprobación en 24-48 horas</h3>
             <p>Sin esperar semanas. Una vez recibimos tus documentos, te respondemos rápido.</p>
           </div>
+
           <div class="ventaja">
-            <div class="ventaja-icon" aria-hidden="true">🤝</div>
+            <div class="ventaja-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </div>
             <h3>Un asesor, no un call center</h3>
             <p>La misma persona te acompaña desde la evaluación hasta el desembolso. Sabes con quién hablas.</p>
           </div>
+
           <div class="ventaja">
-            <div class="ventaja-icon" aria-hidden="true">📄</div>
+            <div class="ventaja-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
             <h3>Sabes qué firmás antes de firmar</h3>
             <p>Te explicamos cada cláusula. Nada de letra menuda ni cargos que aparecen después.</p>
           </div>
+
           <div class="ventaja">
-            <div class="ventaja-icon" aria-hidden="true">📱</div>
+            <div class="ventaja-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                <line x1="12" y1="18" x2="12.01" y2="18"/>
+              </svg>
+            </div>
             <h3>Todo desde el celular</h3>
             <p>Sube documentos, firma digitalmente y sigue el estado de tu crédito sin ir a ninguna oficina.</p>
           </div>
+
         </div>
       </div>
     </section>
@@ -226,26 +296,57 @@
         <h2 class="section-title" id="faq-heading" style="text-align:center;">Lo que más nos preguntan</h2>
         <p class="section-sub" style="text-align:center;">¿No encuentras lo que buscas? Escríbenos en el chat.</p>
         <div class="faq-list" role="list">
+
           <div class="faq-item" role="listitem">
-            <button class="faq-question" aria-expanded="false">¿Cuánto ingreso necesito para que me aprueben? <span class="faq-chevron" aria-hidden="true">▼</span></button>
+            <button class="faq-question" aria-expanded="false">
+              ¿Cuánto ingreso necesito para que me aprueben?
+              <span class="faq-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
             <div class="faq-answer"><p>La regla general es que la cuota mensual no supere el 30-35% de tu ingreso neto. Si ganas $6 millones COP al mes, puedes aspirar a una cuota de hasta $2 millones, lo que equivale aproximadamente a un crédito de $180-200 millones COP a 20 años. Si no alcanzas solo, puedes incluir un codeudor para sumar ingresos.</p></div>
           </div>
+
           <div class="faq-item" role="listitem">
-            <button class="faq-question" aria-expanded="false">¿Qué es VIS y cómo afecta mi crédito? <span class="faq-chevron" aria-hidden="true">▼</span></button>
+            <button class="faq-question" aria-expanded="false">
+              ¿Qué es VIS y cómo afecta mi crédito?
+              <span class="faq-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
             <div class="faq-answer"><p>VIS (Vivienda de Interés Social) son inmuebles con precio hasta aprox $150 millones COP. Para VIS hay condiciones especiales: financiamos hasta el 90% del valor y pueden aplicar subsidios del gobierno. Para inmuebles No VIS el financiamiento es hasta el 80% y las tasas son de mercado. En la evaluación te decimos cuál aplica a tu caso.</p></div>
           </div>
+
           <div class="faq-item" role="listitem">
-            <button class="faq-question" aria-expanded="false">¿Puedo aplicar si soy independiente o tengo negocio propio? <span class="faq-chevron" aria-hidden="true">▼</span></button>
+            <button class="faq-question" aria-expanded="false">
+              ¿Puedo aplicar si soy independiente o tengo negocio propio?
+              <span class="faq-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
             <div class="faq-answer"><p>Sí, trabajamos con independientes y empresarios. En estos casos analizamos la declaración de renta de los últimos 2 años y los extractos bancarios para promediar el ingreso. No necesitas carta laboral, pero sí que los ingresos sean consistentes y verificables.</p></div>
           </div>
+
           <div class="faq-item" role="listitem">
-            <button class="faq-question" aria-expanded="false">¿Cuánto demora el proceso desde que aplico? <span class="faq-chevron" aria-hidden="true">▼</span></button>
+            <button class="faq-question" aria-expanded="false">
+              ¿Cuánto demora el proceso desde que aplico?
+              <span class="faq-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
             <div class="faq-answer"><p>La pre-aprobación inicial toma 24 a 48 horas hábiles desde que recibimos los documentos. El proceso completo, desde la radicación formal hasta el desembolso, está entre 15 y 30 días hábiles dependiendo del banco y del estudio de títulos del inmueble.</p></div>
           </div>
+
           <div class="faq-item" role="listitem">
-            <button class="faq-question" aria-expanded="false">¿La evaluación inicial tiene algún costo? <span class="faq-chevron" aria-hidden="true">▼</span></button>
+            <button class="faq-question" aria-expanded="false">
+              ¿La evaluación inicial tiene algún costo?
+              <span class="faq-chevron" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </span>
+            </button>
             <div class="faq-answer"><p>No. La evaluación y la asesoría previa son completamente gratuitas. Los costos asociados al crédito (estudio, avalúo, notaría) te los explicamos con detalle antes de que tomes cualquier decisión. Sin sorpresas.</p></div>
           </div>
+
         </div>
       </div>
     </section>
@@ -255,7 +356,9 @@
   <footer role="contentinfo">
     <div class="container footer-inner">
       <div>
-        <p class="footer-brand">Mi Casa Crédito</p>
+        <div class="footer-logo">
+          <img src="/images/logo-mcc-white.png" alt="Mi Casa Crédito" />
+        </div>
         <p>Especialistas en crédito hipotecario · Colombia</p>
       </div>
       <div class="footer-links">
@@ -267,30 +370,41 @@
     </div>
   </footer>
 
+  <!-- Chat widget -->
   <div class="chat-widget" role="complementary" aria-label="Asistente virtual">
     <div class="chat-panel" id="chat-panel" aria-hidden="true">
       <div class="chat-header">
-        <div class="chat-avatar" aria-hidden="true">🏠</div>
+        <div class="chat-avatar" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
         <div class="chat-header-info">
           <h4>Carlos · Asesor virtual</h4>
           <p>Mi Casa Crédito · En línea</p>
         </div>
-        <button class="chat-header-close" id="chat-close" aria-label="Cerrar chat">✕</button>
+        <button class="chat-header-close" id="chat-close" aria-label="Cerrar chat">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
       <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-label="Conversación"></div>
       <div class="chat-input-area">
         <input id="chat-input" type="text" placeholder="Escribe tu pregunta..." autocomplete="off" maxlength="500" aria-label="Mensaje" />
-        <button class="chat-send" id="chat-send" aria-label="Enviar">➤</button>
+        <button class="chat-send" id="chat-send" aria-label="Enviar">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
       </div>
-      <div class="chat-disclaimer">Orientación por IA + asesor humano. Tu información no se almacena en el servidor.</div>
+      <div class="chat-disclaimer">Orientación por IA + asesor humano. Tu información no se almacena.</div>
     </div>
     <button class="chat-toggle" id="chat-toggle" aria-label="Abrir asistente virtual" aria-expanded="false" aria-controls="chat-panel">
-      💬
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+      </svg>
       <span class="chat-bubble-count" id="chat-count" aria-label="1 mensaje nuevo">1</span>
     </button>
   </div>
 
-  <!-- Motion stack: Three.js → Vanta (3D hero) → GSAP → ScrollTrigger → Lenis -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
