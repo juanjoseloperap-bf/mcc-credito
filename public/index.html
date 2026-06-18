@@ -144,14 +144,16 @@
           ></iframe>
         </div>
         <script>
+          var _calcResizeTimer;
           window.addEventListener('message', function(e) {
             if (e.data && e.data.type === 'calc-height') {
               var iframe = document.getElementById('calc-iframe');
               if (!iframe) return;
               iframe.style.height = (e.data.height + 24) + 'px';
-              // Recalcular scroll tras cambio de altura del iframe
-              if (window.__lenis) window.__lenis.resize();
-              ScrollTrigger && ScrollTrigger.refresh && ScrollTrigger.refresh();
+              clearTimeout(_calcResizeTimer);
+              _calcResizeTimer = setTimeout(function() {
+                if (window.__lenis) window.__lenis.resize();
+              }, 120);
             }
           });
         </script>
